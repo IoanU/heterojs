@@ -157,6 +157,8 @@ When WebGPU reports device loss, the engine rejects active and queued GPU work w
 
 ## Reproducible benchmarks
 
+Use the [cross-device browser suite](https://ioanu.github.io/heterojs/device-benchmarks.html) to run a fixed profile on several devices and compare the exported results. It includes vector and matrix multiplication and the Fractalia renderer. [Cross-device test procedure](docs/device-benchmarks.md)
+
 The local benchmark page compares `cpu-only`, `gpu-only`, `static`, `adaptive`, and direct CPU execution. You can select the operation, input sizes, and warm-up count. Matrix sizes are given as square side lengths, and throughput uses the `2 × side³` convention for GFLOP/s.
 
 ```sh

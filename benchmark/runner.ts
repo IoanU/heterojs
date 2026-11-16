@@ -11,6 +11,7 @@ export interface Settings {
   warmups: number;
   cpuShare: number;
   comparison?: 'all' | 'cpu';
+  includeDirect?: boolean;
 }
 
 export interface Sample {
@@ -107,7 +108,8 @@ export async function benchmark(
     await new Promise<void>((resolve) => setTimeout(resolve, 0));
     signal.throwIfAborted();
     const { request, reference, tolerance } = inputsFor(operation, size);
-    const group: Row[] = selected.map((strategy) => ({ operation, size, strategy, warmups: [], warm: [] }));
+    const group: Row[] = selected.filter((strategy) => strategy !== 'cpu-direct' || settings.includeDirect !== false)
+      .map((strategy) => ({ operation, size, strategy, warmups: [], warm: [] }));
     const active: { row: Row; compute: () => Promise<ComputeResult>; close?: () => void }[] = [];
     const measure = async ({ row, compute }: (typeof active)[number]) => {
       if (row.unavailable) return;

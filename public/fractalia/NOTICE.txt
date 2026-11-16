@@ -1,0 +1,8 @@
+Fractalia renderer benchmark fixture
+
+Project: https://github.com/IoanU/fractalia
+HeteroJS integration snapshot: fb70975499166771e4f61e7a0d3800c2b5ab419c (dist/)
+
+The worker, render kernels, colorizer, and their dependencies are copied from that revision.
+The HeteroJS adapter is configured for separate benchmark sessions and identical CPU previews.
+See docs/device-benchmarks.md in the HeteroJS repository for the test procedure.

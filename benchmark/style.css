@@ -30,6 +30,7 @@ main { max-width: 1460px; margin: auto; padding: 38px clamp(16px, 4vw, 64px); }
 h1, h2, h3, p { margin: 0; }
 h1 { margin: 15px 0 8px; font-size: clamp(1.65rem, 4.2vw, 3rem); line-height: 1.1; letter-spacing: -.045em; }
 .hero p { color: #bcced8; }
+.device-benchmark-link { display: inline-block; margin-top: 14px; color: #a6ead9; }
 .hardware { border: 1px solid #486474; border-radius: 8px; padding: 9px 13px; color: #d8eeee; font-size: .85rem; }
 .workspace { display: grid; grid-template-columns: minmax(235px, 300px) minmax(0, 1fr); gap: 22px; align-items: start; }
 .card { border: 1px solid var(--border); background: #fff; border-radius: 13px; padding: 22px; }
