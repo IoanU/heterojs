@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>HeteroJS · CPU and GPU benchmark</title>
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <div class="hero-title">
+          <div class="wordmark"><span aria-hidden="true"></span>HeteroJS</div>
+          <h1>CPU and GPU benchmark</h1>
+          <p>Compare CPU, WebGPU, static and adaptive scheduling on this device.</p>
+        </div>
+        <div class="hardware" id="hardware" aria-live="polite">Checking available hardware…</div>
+      </header>
+
+      <div class="workspace">
+        <section class="card settings" aria-labelledby="setup-title">
+          <h2 id="setup-title">Run settings</h2>
+          <form id="settings">
+            <label for="operation">Operation</label>
+            <select id="operation">
+              <option value="vectorMultiply">Vector multiply</option>
+              <option value="vectorAdd">Vector add</option>
+              <option value="scalarMultiply">Scalar multiply</option>
+              <option value="sum">Sum reduction</option>
+              <option value="min">Minimum reduction</option>
+              <option value="max">Maximum reduction</option>
+              <option value="matrixMultiply">Matrix multiply</option>
+            </select>
+            <label for="comparison">Compare</label>
+            <select id="comparison">
+              <option value="all">All strategies</option>
+              <option value="cpu">Adaptive vs. CPU baselines</option>
+            </select>
+            <label for="sizes">Vector lengths</label>
+            <input id="sizes" value="65536, 1048576, 4194304" required aria-describedby="sizes-help" />
+            <small id="sizes-help">List up to 8 lengths, separated by commas.</small>
+            <div class="paired">
+              <div>
+                <label for="warmups">Warm-up runs</label>
+                <input id="warmups" type="number" min="0" max="20" value="2" required />
+              </div>
+              <div>
+                <label for="samples">Timed runs</label>
+                <input id="samples" type="number" min="1" max="30" value="5" required />
+              </div>
+            </div>
+            <label for="share">Static CPU share</label>
+            <div class="suffix"><input id="share" type="number" min="1" max="99" value="25" required /><span>%</span></div>
+            <div class="actions">
+              <button id="run" type="submit" disabled>Run benchmark</button>
+              <button id="cancel" class="secondary" type="button" hidden>Cancel</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="card results" aria-labelledby="results-title">
+          <div class="results-heading">
+            <div>
+              <h2 id="results-title">Results</h2>
+              <p id="status" role="status">Detecting CPU and GPU support.</p>
+            </div>
+            <button id="download" class="secondary" type="button" disabled>Export JSON</button>
+          </div>
+          <div id="empty">Run the benchmark to see latency, variation and correctness by strategy.</div>
+          <div id="results"></div>
+        </section>
+      </div>
+      <footer>Latency includes dispatch, transfers and result assembly. Inputs are generated and verified outside the timed interval.</footer>
+    </main>
+    <script type="module" src="/benchmark/main.ts"></script>
+  </body>
+</html>
